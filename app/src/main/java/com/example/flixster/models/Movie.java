@@ -56,14 +56,14 @@ public class Movie {
     }
 
     public String getReleaseDate() {
-        return releaseDate;
+        return "Released " + releaseDate;
     }
 
     public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public int getVoteCount() {
-        return voteCount;
+    public String getVoteCount() {
+        return "" + voteCount + " Votes";
     }
 }
