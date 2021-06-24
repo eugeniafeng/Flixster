@@ -14,6 +14,9 @@ import com.example.flixster.models.Movie;
 
 import org.parceler.Parcels;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
+
 public class MovieDetailsActivity extends AppCompatActivity {
 
     Movie movie;
@@ -42,8 +45,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
-        tvVoteCount.setText("" + movie.getVoteCount() + " Votes");
-        tvReleaseDate.setText("Released " + movie.getReleaseDate());
+        tvVoteCount.setText(movie.getVoteCount());
+        tvReleaseDate.setText(movie.getReleaseDate());
         rbVoteAverage.setRating(movie.getVoteAverage().floatValue() / 2.0f);
 
         String imageUrl;
@@ -58,6 +61,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
             imageUrl = movie.getPosterPath();
             placeholder = R.drawable.placeholder;
         }
-        Glide.with(this).load(imageUrl).placeholder(placeholder).into(ivPoster);
+//        Glide.with(this).load(imageUrl).placeholder(placeholder).into(ivPoster);
+
+        int radius = 30;
+        int margin = 10;
+        Glide.with(this)
+                .load(imageUrl)
+                .centerCrop()
+                .transform(new RoundedCornersTransformation(radius, margin))
+                .placeholder(placeholder)
+                .into(ivPoster);
     }
 }
