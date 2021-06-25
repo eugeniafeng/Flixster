@@ -30,7 +30,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     Context context;
     List<Movie> movies;
-    ItemMovieBinding binding;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -42,8 +41,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d("MovieAdapter", "onCreateViewHolder");
-        binding = ItemMovieBinding.inflate(LayoutInflater.from(context), parent, false);
-        return new ViewHolder(binding.getRoot());
+        ItemMovieBinding binding = ItemMovieBinding.inflate(LayoutInflater.from(context), parent, false);
+        return new ViewHolder(binding);
     }
 
     // Involves populating data into the item through holder
@@ -64,14 +63,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
+        ItemMovieBinding itemMovieBinding;
+
+        public ViewHolder(@NonNull ItemMovieBinding itemMovieBinding) {
+            super(itemMovieBinding.getRoot());
+            this.itemMovieBinding = itemMovieBinding;
+            itemMovieBinding.getRoot().setOnClickListener(this);
         }
 
         public void bind(Movie movie) {
-            binding.tvTitle.setText(movie.getTitle());
-            binding.tvOverview.setText(movie.getOverview());
+            itemMovieBinding.tvTitle.setText(movie.getTitle());
+            itemMovieBinding.tvOverview.setText(movie.getOverview());
             String imageUrl;
             int placeholder;
             // if phone is in landscape
@@ -92,7 +94,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                     .centerCrop()
                     .transform(new RoundedCornersTransformation(radius, margin))
                     .placeholder(placeholder)
-                    .into(binding.ivPoster);
+                    .into(itemMovieBinding.ivPoster);
         }
 
         // When the user clicks on a row, show MovieDetailsActivity for the selected movie
