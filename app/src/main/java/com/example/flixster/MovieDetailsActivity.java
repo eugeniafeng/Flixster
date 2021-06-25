@@ -92,8 +92,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         Log.d(TAG, results.getJSONObject(index).getString("site"));
                     }
 
-                    videoId = results.getJSONObject(index).getString("key");
-                    Log.d(TAG, "https://www.youtube.com/watch?v=" + videoId);
+                    movie.setVideoId(results.getJSONObject(index).getString("key"));
+                    Log.d(TAG, "https://www.youtube.com/watch?v=" + movie.getVideoId());
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                 }
@@ -109,11 +109,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Clicked video");
-                if (videoId != null && !videoId.isEmpty()) {
+                if (movie.getVideoId() != null && !movie.getVideoId().isEmpty()) {
                     // Create the new activity
                     Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                     // Pass the data being edited
-                    i.putExtra("videoId", videoId);
+                    i.putExtra("videoId", movie.getVideoId());
                     // Display the activity
                     startActivity(i);
                 }

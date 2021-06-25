@@ -19,6 +19,7 @@ public class Movie {
     Double voteAverage;
     int voteCount;
     Integer id;
+    String videoId;
 
     public Movie() {}
 
@@ -71,5 +72,13 @@ public class Movie {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 }
