@@ -24,7 +24,7 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Allow user to view vote count and release date within separate activity and position overview under the lower of the release date or the image.
+* [x] Allow user to view vote count and release date within separate activity and position the overview under the lower of the release date or the image.
 * [x] Implement the same tap-to-play YouTube functionality from the landscape view of the movies list.
 * [x] Display a “play” overlay image over the backdrop on the details activity as a visual cue to the user.
 * [x] Filter out any videos that aren’t YouTube, as these would not work with the player view.
