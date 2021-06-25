@@ -81,10 +81,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
+                int index = 0;
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
                     Log.i(TAG, "Results: " + results.toString());
-                    videoId = results.getJSONObject(0).getString("key");
+
+                    // check if the site is YouTube - if does not exist, will produce an error
+                    while (!results.getJSONObject(index).getString("site").equals("YouTube")) {
+                        index++;
+                        Log.d(TAG, results.getJSONObject(index).getString("site"));
+                    }
+
+                    videoId = results.getJSONObject(index).getString("key");
                     Log.d(TAG, "https://www.youtube.com/watch?v=" + videoId);
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
@@ -101,7 +109,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Clicked video");
-                if (!videoId.isEmpty()) {
+                if (videoId != null && !videoId.isEmpty()) {
                     // Create the new activity
                     Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                     // Pass the data being edited

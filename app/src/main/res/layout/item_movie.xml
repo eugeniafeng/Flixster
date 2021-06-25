@@ -23,8 +23,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-smallcaps"
+        android:maxLines="1"
+        android:textColor="#673AB7"
         android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="serif"
         tools:text="Luca" />
 
     <TextView
@@ -34,6 +41,11 @@
         android:layout_below="@+id/tvTitle"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="-18dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:ellipsize="end"
+        android:maxLines="8"
+        android:textColor="#3F51B5"
+        android:typeface="serif"
         tools:text="Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface." />
 </RelativeLayout>
